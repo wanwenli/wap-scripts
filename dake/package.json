@@ -1,0 +1,26 @@
+{
+  "name": "dake",
+  "version": "1.2.0",
+  "description": "Dake God Protects You",
+  "main": "dake.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swwl1992/dake.git"
+  },
+  "keywords": [
+    "dake"
+  ],
+  "dependencies": {
+    "forever": "^0.15.2",
+    "ical": "^0.5.0",
+    "moment": "^2.14.1",
+    "node-getopt": "^0.2.3",
+    "node-schedule": "^1.0.0",
+    "requestretry": "^1.8.0"
+  },
+  "scripts": {
+      "start": "forever --minUptime 1000 --spinSleepTime 1000 start dake.js",
+      "logs": "forever logs 0",
+      "stop": "forever stopall"
+  }
+}
