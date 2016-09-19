@@ -8,3 +8,6 @@ Automatic attendance-taking tool for CWS.
 
 ### gitlab-rebuild-extension
 Regularly check all merge requests on GitLab and rebuild failed ones.
+
+### CSR-Bot
+Automation for CSR.
