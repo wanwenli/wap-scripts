@@ -20,14 +20,6 @@
       hour = dateObj.getHours(),
       minute = dateObj.getMinutes() + Math.round(Math.random() * 15) + 1;
 
-  $('#BTNDTL' + year + '_' + month + '_' + day + '0').waitUntilExists(function() {
-    if ($(this).parent().prop('class') === 'mg_saved') {
-      chrome.extension.sendRequest({ message: "CLOSE" }, function () {});
-    } else {
-      $(this).click();
-    }
-  }, true);
-
   $('.PmPanelEntryTimeWidgetAreaStyle .PmEventSpan:eq(1)').waitUntilExists(function() {
     $('.PmPanelEntryTimeWidgetAreaStyle .PmEventSpan').get(1).click();
   }, true);
