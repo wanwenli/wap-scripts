@@ -19,8 +19,43 @@ $(function() {
       hour = dateObj.getHours(),
       minute = dateObj.getMinutes() + Math.round(Math.random() * 15) + 1;
 
-  $('.PmPanelEntryTimeWidgetAreaStyle .PmEventSpan:eq(1)').waitUntilExists(function() {
-    $('.PmPanelEntryTimeWidgetAreaStyle .PmEventSpan').get(1).click();
+  // fault tolerance when timeout
+  $('h1').waitUntilExists(function(){
+    if($('h1').text() === "TimeOut"){
+      window.location.href = 'main';
+    }
+  },true);
+
+  // choose the date that has no record
+  $('#APPROVALGRD').waitUntilExists(function(){
+    $('#APPROVALGRD').each(function(index, tr) {
+      var lines = $('td', tr).map(function(index, td) {
+          return $(td);
+      });
+      // TODO refactor
+      var found = false;
+      for (i = 0; i + 5 < lines.length;i++) {
+          if(lines[i+2].text() === "workvacation"&&
+            lines[i+5].text() === "-"){
+            lines[i+4].children()[0].click();
+            found = true;
+            break;
+          }
+      }
+      // fill previous month
+      if(!found){
+        var href = $('#TOPRVTM').attr('href');
+        window.location.href = href;
+      }
+  });
+  }, true);
+
+  // choose the last entered code
+  $('.PmPanelEntryTimeWidgetAreaStyle .PmEventSpan:eq(0)').waitUntilExists(function() {
+    setTimeout(function(){
+      $('.PmPanelEntryTimeWidgetAreaStyle .PmEventSpan:eq(0)').click();
+      // this stupid `PmPanelEntry` is not initialized. so have to wait
+    }, 15000);
   }, true);
 
   $('#PmDdEntryTimeInputWidget_0H').waitUntilExists(function() {
