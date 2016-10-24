@@ -1,6 +1,6 @@
 $(function() {
   $('#datainput tr td input').waitUntilExists(function() {
-    $('#datainput tr td input:eq(0)').val('your id');
+    $('#datainput tr td input:eq(0)').val('S086');
     $('#datainput tr td p input:eq(0)').click();
   }, true);
 
@@ -12,49 +12,62 @@ $(function() {
     $('.lg-body tbody tr td a').get(0).click();
   }, true);
 
-  var dateObj = new Date();
-  var year = dateObj.getFullYear(),
-      month = dateObj.getMonth() + 1,
-      day = dateObj.getDate(),
-      hour = dateObj.getHours(),
-      minute = dateObj.getMinutes() + Math.round(Math.random() * 15) + 1;
+  var today = new Date();
+  var year = today.getFullYear(),
+    month = today.getMonth() + 1,
+    day = today.getDate(),
+    hour = today.getHours(),
+    minute = today.getMinutes() + Math.round(Math.random() * 15) + 1;
 
   // fault tolerance when timeout
-  $('h1').waitUntilExists(function(){
-    if($('h1').text() === "TimeOut"){
+  $('h1').waitUntilExists(function() {
+    if ($('h1').text() === "TimeOut") {
       window.location.href = 'main';
     }
-  },true);
+  }, true);
 
   // choose the date that has no record
-  $('#APPROVALGRD').waitUntilExists(function(){
+  $('#APPROVALGRD').waitUntilExists(function() {
     $('#APPROVALGRD').each(function(index, tr) {
+      // aggregate td elements, because each tr has different number of td
       var lines = $('td', tr).map(function(index, td) {
-          return $(td);
+        return $(td);
       });
-      // TODO refactor
       var found = false;
-      for (i = 0; i + 5 < lines.length;i++) {
-          if(lines[i+2].text() === "workvacation"&&
-            lines[i+5].text() === "-"){
-            lines[i+4].children()[0].click();
-            found = true;
+      for (var i = 0; i + 5 < lines.length; i++) {
+        // start a row
+        if (lines[i + 2].text() === "workvacation") {
+          // retrieve date for entry
+          var tokens = lines[i].text().split('/');
+          var month = tokens[0], day = tokens[1];
+          var date = new Date(year, month - 1, day);
+          if (lines[i + 5].text() === "-") {
+            if (date <= today) {
+              // entries up to today are all complete
+              lines[i + 4].children()[0].click();
+              found = true;
+            } else {
+              // entries for the entire month is complete
+              found = false;
+            }
             break;
           }
+        }
       }
       // fill previous month
-      if(!found){
+      if (!found) {
         var href = $('#TOPRVTM').attr('href');
         window.location.href = href;
       }
-  });
+    });
   }, true);
 
   // choose the last entered code
   $('.PmPanelEntryTimeWidgetAreaStyle .PmEventSpan:eq(0)').waitUntilExists(function() {
-    setTimeout(function(){
-      $('.PmPanelEntryTimeWidgetAreaStyle .PmEventSpan:eq(0)').click();
+    setTimeout(function() {
       // this stupid `PmPanelEntry` is not initialized. so have to wait
+      // want-cry-no-tears.jpg
+      $('.PmPanelEntryTimeWidgetAreaStyle .PmEventSpan:eq(0)').click();
     }, 15000);
   }, true);
 
