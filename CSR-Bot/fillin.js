@@ -13,12 +13,11 @@ $(function() {
   }, true);
 
   var dateObj = new Date();
-  var year = dateObj.getFullYear();
-  var month = dateObj.getMonth() + 1;
-  var day = dateObj.getDate();
-
-  var hour = dateObj.getHours();
-  var minute = dateObj.getMinutes();
+  var year = dateObj.getFullYear(),
+      month = dateObj.getMonth() + 1,
+      day = dateObj.getDate(),
+      hour = dateObj.getHours(),
+      minute = dateObj.getMinutes() + Math.round(Math.random() * 15) + 1;
 
   $('.PmPanelEntryTimeWidgetAreaStyle .PmEventSpan:eq(1)').waitUntilExists(function() {
     $('.PmPanelEntryTimeWidgetAreaStyle .PmEventSpan').get(1).click();
