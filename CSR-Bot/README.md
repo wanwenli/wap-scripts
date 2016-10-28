@@ -4,9 +4,17 @@ Inputless automation for CSR.
 
 ### Setup
 
-* URL of CSR: `background.js` line 2
 * Employement ID: `fillin.js` line 2
+* URL of CSR: `background.js` line 2
 
 ### How to use
 
-Install the extension to your chrome and click it before leaving the office.
+* Install the extension on your chrome.
+* Fill in the working hour for *at least* one day for each month,
+such that the bot can pick up a project from the "recently used project."
+* Click the extension and enjoy!
+
+### Notes
+
+On a few pages the waiting time can be as long as 15 seconds.
+This is a hack to waiting the rendering to complete.
