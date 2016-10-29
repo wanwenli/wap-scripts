@@ -11,10 +11,10 @@ Inputless automation for CSR.
 
 * Install the extension on your chrome.
 * Fill in the working hour for *at least* one day for each month,
-such that the bot can pick up a project from the "recently used project."
+such that the bot can pick up a project from the lists of "recently used projects".
 * Click the extension and enjoy!
 
 ### Notes
 
 On a few pages the waiting time can be as long as 15 seconds.
-This is a hack to waiting the rendering to complete.
+This is a hack to wait for the rendering to complete.
