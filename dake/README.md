@@ -32,6 +32,21 @@ Example
 npm start -- S146 3533335qaz -i
 ```
 
+### Sign-in once only (mainly for windows users)
+
+You can sign in once only and then the program exits.
+Use the command below in Windows task scheduler.
+
+```sh
+node dake.js [userId] [password] -o
+```
+
+Example
+
+```sh
+node dake.js S146 3533335qaz -o
+```
+
 ### Check logs
 
 ```sh
@@ -43,7 +58,10 @@ npm run logs
 ```sh
 npm stop
 ```
-### Run on Docker
+### Run on Docker (deprecated)
+
+The inner clock of docker has huge discrepancy compared to the real clock.
+This issue has not been resolved yet.
 
 ```sh
 docker build -t dake .
