@@ -73,6 +73,8 @@ function responseCallback(message) {
     var dateTime = moment().format('YYYY-MM-DD HH:mm:ss');
     if (res === undefined) {
       console.log(dateTime + ' | Response undefined.');
+    } else if (body.indexOf('Login to CWS') < 0) {
+      console.log(dateTime + ' | Wrong password. Please try again.');
     } else if (res.statusCode == 200) {
       console.log(dateTime + ' | Response Code 200: ' + message);
       console.log(dateTime + " | You're again protected by Dake.js today.");
