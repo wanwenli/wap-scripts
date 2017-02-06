@@ -50,9 +50,9 @@ $(function() {
           var tokens = lines[i].text().split('/');
           var month = tokens[0],
               day = tokens[1],
-              currentYaer = lines[i].find('input').attr('name').slice(3,7);
+              currentYear = lines[i].find('input').attr('name').slice(3,7);
 
-          var date = new Date(currentYaer, month - 1, day);
+          var date = new Date(currentYear, month - 1, day);
           if (lines[i + 5].text() === "-") {
             if (date <= today) {
               // entries up to today are all complete
