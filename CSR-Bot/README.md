@@ -16,5 +16,8 @@ such that the bot can pick up a project from the lists of "recently used project
 
 ### Notes
 
-On a few pages the waiting time can be as long as 15 seconds.
+* Skipping vacations (paid leaves) is enabled.
+If you wish to skip vacations,
+please set "Work Name" of those days to vacation **before** running the bot.
+* On a few pages the waiting time can be as long as 15 seconds.
 This is a hack to wait for the rendering to complete.

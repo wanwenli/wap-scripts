@@ -43,26 +43,31 @@ $(function() {
         return $(td);
       });
       var found = false;
+      // iterate each td element, because the number of cells is not the same across all rows
       for (var i = 0; i + 5 < lines.length; i++) {
+        var $workName = lines[i + 2];
         // start a row
-        if (lines[i + 2].text() === "workvacation") {
-          // retrieve date for entry
-          var tokens = lines[i].text().split('/');
-          var month = tokens[0],
-              day = tokens[1],
-              currentYear = lines[i].find('input').attr('name').slice(3,7);
+        if ($workName.text() === "workvacation") {
+          // if the day is not on vacation
+          if ($workName.children('select:first').find(":selected").text() !== 'vacation') {
+            // retrieve date for entry
+            var tokens = lines[i].text().split('/');
+            var month = tokens[0],
+                day = tokens[1],
+                currentYear = lines[i].find('input').attr('name').slice(3,7);
 
-          var date = new Date(currentYear, month - 1, day);
-          if (lines[i + 5].text() === "-") {
-            if (date <= today) {
-              // entries up to today are all complete
-              lines[i + 4].children()[0].click();
-              found = true;
-            } else {
-              // entries for the entire month is complete
-              found = false;
+            var date = new Date(currentYear, month - 1, day);
+            if (lines[i + 5].text() === "-") {
+              if (date <= today) {
+                // entries up to today are all complete
+                lines[i + 4].children()[0].click();
+                found = true;
+              } else {
+                // entries for the entire month are complete
+                found = false;
+              }
+              break;
             }
-            break;
           }
         }
       }
